@@ -1,0 +1,51 @@
+<title>&lt;{{vm.val}}:{{vm['MODULE'].val}}&gt;</title>
+<link rel="stylesheet" href="/css.css">
+<link rel="shortcut icon" href="/static/logo.png" type="image/png">
+
+<script>var onload = []</script>
+
+<pre>{{web}}</pre>
+
+<pre>{{frame}}</pre>
+
+{% block cli %}
+
+<form id=cli method=post>
+{{form.hidden_tag()}}
+{{form.pad()}}
+{{form.go()}}
+</form>
+
+<script>
+onload.push( function() {
+	cli = document.querySelector('#cli')
+	pad = document.querySelector('#pad')
+	go  = document.querySelector('#go' )
+	pad.onkeydown = ctrlenter
+} )
+
+function ctrlenter(event) {
+	if (event.key == 'Enter' & (event.shiftKey | event.ctrlKey ))
+		cli.submit()
+}
+</script>
+		
+{% endblock %}
+
+<script>
+
+document.addEventListener('readystatechange', event => {
+
+    if (event.target.readyState === "interactive") {
+    	//same as:  document.addEventListener("DOMContentLoaded"...   // same as  jQuery.ready
+        //alert("All HTML DOM elements are accessible");
+    }
+
+    if (event.target.readyState === "complete") {
+        //alert("Now external resources are loaded too, like css,src etc... ");
+        onload.map((f,i) => f())
+    }
+
+});
+    
+</script>

@@ -1,0 +1,10 @@
+* {
+	background:		{{web['CSS']['background'].val}};
+	color:			{{web['CSS']['color'].val}};
+	font-family:	{{web['CSS']['font'].val}};
+	font-size: 		{{web['CSS']['font']['size']}};
+}
+
+#cli	{ width:98%;  position:absolute; bottom:0; }
+#pad	{ width:100%; color:darkcyan; }
+#go		{ width:100%; background:darkslategrey; }
