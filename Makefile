@@ -5,7 +5,12 @@ all: KBMS.py KBMS.ini jslibs
 	
 merge:
 	git checkout master
-	git checkout ponyatov -- KBMS.py KBMS.ini Makefile README.md static templates
+	git checkout ponyatov -- KBMS.py KBMS.ini Makefile README.md \
+								static templates .gitignore
+								
+NOW = $(shell date +%d%m%y)
+release:
+	git tag $(NOW) ; git push -v --tags gh master
 
 jslibs: static/peg.js
 
